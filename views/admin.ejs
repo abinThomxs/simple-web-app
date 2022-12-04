@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/header.ejs') %>
+
+    <body class="container mt-5">
+
+        <%- include('./partials/navbar.ejs') %>
+
+            <table id="tableForm" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Edit</th>
+                        <!-- <th scope="col">Add User</th> -->
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(usersData=>{ %>
+                        <tr>
+                            <td>
+                                <%= usersData.firstName %>
+                            </td>
+                            <td>
+                                <%= usersData.lastName %>
+                            </td>
+                            <td>
+                                <%= usersData.email %>
+                            </td>
+                            <td><a href="/admin/edit?email=<%= usersData.email %>" class="btn btn-secondary">Edit</a>
+                            </td>
+                            <!-- <td><a href="/admin/add" class="btn btn-secondary">Add User</a></td> -->
+                            <td><a href="/admin/delete?email=<%= usersData.email %>" class=" btn btn-danger"
+                                    onclick="return confirm('CLICK OK TO DELETE')">Delete</a></td>
+                        </tr>
+                        <%})%>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                    <td><a href="/adduser" class="btn btn-success">Add User</a></td>
+                    <td><a href="/admin/logout" class="btn btn-primary">Logout</a></td>
+                </tbody>
+            </table>
+
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript"
+                src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+            <script>
+                $(document).ready(function () {
+                    $('#tableForm').DataTable();
+                });
+            </script>
+
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+                integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+                crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
